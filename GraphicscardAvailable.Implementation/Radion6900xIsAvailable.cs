@@ -13,7 +13,7 @@ namespace GraphicscardAvailable.Implementation
         {
             var shoplink = "https://www.amd.com/en/direct-buy/add-to-cart/5458374200";
             var client = new HttpClient();
-            var response = await client.GetAsync(shoplink);
+            var response = client.GetAsync(shoplink).Result;
             var result = await response.Content.ReadAsStringAsync();
             if (!result.Contains("Web Site Maintenance"))
             {
