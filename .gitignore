@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs/GraphicscardAvailable
+/.vscode
+/GraphicscardAvailable.Functions/.vscode
+/GraphicscardAvailable.Implementation/bin/Debug/netstandard2.1
+/GraphicscardAvailable.Implementation/obj
+/GraphicscardAvailable.RazorPages/bin/Debug/net5.0
+/GraphicscardAvailable.RazorPages/obj
