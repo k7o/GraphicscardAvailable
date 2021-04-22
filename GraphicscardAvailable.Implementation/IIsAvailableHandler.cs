@@ -1,9 +1,9 @@
 
 using System.Threading.Tasks;
 
-namespace GraphicscardAvailable.Implementation 
+namespace GraphicscardAvailable.Implementation
 {
-    public interface IIsAvailableHandler 
+    public interface IIsAvailableHandler
     {
         Task<IsAvailableResponse> Handle(IsAvailableRequest request);
     }

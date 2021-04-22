@@ -1,10 +1,11 @@
 using System;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using GraphicscardAvailable.Implementation;
-using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 
 namespace GraphicscardAvailable.Functions
 {
@@ -18,11 +19,12 @@ namespace GraphicscardAvailable.Functions
         }
 
         [FunctionName("ScanForAvailability")]
-        public async Task Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo myTimer, ILogger log)
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
         {
-            var result = await isAvailableHandler.Handle(new IsAvailableRequest());
+            var isAvailableResult = await isAvailableHandler.Handle(new IsAvailableRequest());
 
-            log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            return new OkObjectResult(isAvailableResult);
         }
     }
 }
